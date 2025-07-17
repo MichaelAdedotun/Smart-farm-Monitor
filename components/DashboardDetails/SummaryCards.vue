@@ -6,7 +6,7 @@ const { summary } = await useSummary();
 </script>
 
 <template>
-      <div v-if="summary" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <div v-if="summary" class="grid grid-cols-2 gap-3">
         <div class="bg-white rounded-xl shadow p-4 border border-gray-100">
           <h4 class="text-sm text-gray-500 mb-2">Active Fields</h4>
           <p class="text-3xl font-bold text-green-700">{{ summary.fields }}</p>

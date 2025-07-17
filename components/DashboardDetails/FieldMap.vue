@@ -23,7 +23,7 @@ onMounted(async () => {
 <template>
     <div class="bg-white overflow-hidden">
       <h3 class="text-xl font-semibold mb-5 text-green-700 px-2">🗺️ Field Map</h3>
-      <div id="map" class="w-full h-[400px]"></div>
+      <div id="map" class="w-full h-[400px] z-20"></div>
     </div>
 </template>
 
