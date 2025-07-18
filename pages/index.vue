@@ -11,7 +11,7 @@ definePageMeta({ layout: 'public' })
         Visualize your fields, monitor crop health, and optimize yield
         in real-time using satellite and weather data.
       </p>
-      <NuxtLink to="/dashboard" class="mt-6 px-10 py-3 bg-gradient-to-r from-green-600 to-amber-500 text-white rounded hover:from-green-700 hover:to-amber-600">
+      <NuxtLink to="/admin/dashboard" class="mt-6 px-10 py-3 bg-gradient-to-r from-green-600 to-amber-500 text-white rounded hover:from-green-700 hover:to-amber-600">
         Enter Dashboard
       </NuxtLink>
     </section>

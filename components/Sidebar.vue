@@ -7,9 +7,9 @@ const ui = useUIStore()
 const route = useRoute()
 
 const links = [
-  { name: 'Dashboard', to: '/dashboard' },
-  { name: 'Alerts', to: '/' },
-  { name: 'Settings', to: '/' }
+  { name: 'Dashboard', to: '/admin/dashboard' },
+  { name: 'Alerts', to: '/admin/alerts' },
+  { name: 'Settings', to: '/admin/settings' }
 ]
 </script>
 

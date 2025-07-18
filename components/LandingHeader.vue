@@ -45,7 +45,7 @@ const links = [
 
       <div class="hidden md:block">
         <NuxtLink
-            to="/dashboard"
+            to="/admin/dashboard"
             class="text-sm text-white px-4 py-2 rounded bg-gradient-to-r from-green-600 to-amber-500 hover:from-green-700 hover:to-amber-600"
         >
           Login
@@ -72,7 +72,7 @@ const links = [
       </NuxtLink>
       <div class="mt-3">
         <NuxtLink
-            to="/dashboard"
+            to="/admin/dashboard"
             class="w-fit text-sm text-white px-4 py-2 rounded bg-gradient-to-r from-green-600 to-amber-500 hover:from-green-700 hover:to-amber-600"
         >
           Login
