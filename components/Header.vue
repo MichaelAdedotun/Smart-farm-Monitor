@@ -1,8 +1,18 @@
 <script setup lang="ts">
 
+import { useRoute} from "vue-router";
 import { useUIStore } from '~/stores/ui'
 
 const ui = useUIStore()
+const route = useRoute()
+
+const pageTitle = computed(() => {
+  const path = route.path
+  if (path === '/admin/dashboard') return 'Dashboard'
+  if (path === '/admin/alerts') return 'Alerts'
+  if (path === '/admin/settings') return 'Settings'
+  return 'SmartFarm'
+})
 </script>
 
 <template>
@@ -14,7 +24,7 @@ const ui = useUIStore()
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
-      <h1 class="text-xl font-semibold text-green-700">Dashboard</h1>
+      <h1 class="text-2xl font-bold text-green-700">{{ pageTitle }}</h1>
     </div>
     <div class="flex items-center gap-2">
       <span class="text-sm md:text-md text-gray-500 font-semibold">Michael Adedotun</span>
