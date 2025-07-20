@@ -47,7 +47,11 @@ const chartOptions = computed<ChartOptions<'line'>>(() => ({
     <h3 class="text-lg font-semibold mb-4 text-green-700">📈 NDVI Trend</h3>
     <div class="relative w-full h-[300px]">
       <client-only>
-        <Line :data="chartData" :options="chartOptions" class="h-[300px]" />
+        <Line
+            v-if="chartData.labels.length"
+            :data="chartData"
+            :options="chartOptions"
+        />
       </client-only>
     </div>
   </div>
