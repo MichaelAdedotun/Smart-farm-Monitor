@@ -48,7 +48,7 @@ const chartOptions = computed<ChartOptions<'line'>>(() => ({
     <div class="relative w-full h-[300px]">
       <client-only>
         <Line
-            v-if="chartData.labels.length"
+            v-if="chartData?.labels?.length"
             :data="chartData"
             :options="chartOptions"
         />
