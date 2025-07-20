@@ -20,7 +20,6 @@ const { alerts } = await useAlerts()
       </div>
     </div>
     <p v-else class="text-gray-400">No alerts found.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate eveniet iste officia possimus reprehenderit, tempore.</p>
   </div>
 </template>
 

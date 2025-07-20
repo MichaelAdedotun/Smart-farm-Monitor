@@ -22,37 +22,44 @@ export const useAlerts = async () => {
             },
             {
                 title: 'Soil Alert',
-                message: 'Soil moisture critical in Field B',
+                message: 'Soil moisture critical in Field B' + 'NDVI dropped below 0.5 in Field A. Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
+                            'Cupiditate eveniet iste officia possimus reprehenderit, tempore.',
                 timestamp: '2025-07-12'
             },
             {
                 title: 'Sensor Error',
-                message: 'Sensor #12 not responding',
+                message: 'Sensor #12 not responding' + 'NDVI dropped below 0.5 in Field A. Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
+                            'Cupiditate eveniet iste officia possimus reprehenderit, tempore.',
                 timestamp: '2025-07-11'
             },
             {
                 title: 'Sensor Error',
-                message: 'Sensor #12 not responding',
+                message: 'Sensor #12 not responding' + 'NDVI dropped below 0.5 in Field A. Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
+                            'Cupiditate eveniet iste officia possimus reprehenderit, tempore.',
                 timestamp: '2025-07-11'
             },
             {
                 title: 'Sensor Error',
-                message: 'Sensor #12 not responding',
+                message: 'Sensor #12 not responding'+ 'NDVI dropped below 0.5 in Field A. Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
+                            'Cupiditate eveniet iste officia possimus reprehenderit, tempore.',
                 timestamp: '2025-07-11'
             },
             {
                 title: 'Sensor Error',
-                message: 'Sensor #12 not responding',
+                message: 'Sensor #12 not responding'+ 'NDVI dropped below 0.5 in Field A. Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
+                            'Cupiditate eveniet iste officia possimus reprehenderit, tempore.',
                 timestamp: '2025-07-11'
             },
             {
                 title: 'Sensor Error',
-                message: 'Sensor #12 not responding',
+                message: 'Sensor #12 not responding' + 'NDVI dropped below 0.5 in Field A. Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
+                            'Cupiditate eveniet iste officia possimus reprehenderit, tempore.',
                 timestamp: '2025-07-11'
             },
             {
                 title: 'Soil Alert',
-                message: 'Soil moisture critical in Field B',
+                message: 'Soil moisture critical in Field B' + 'NDVI dropped below 0.5 in Field A. Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
+                            'Cupiditate eveniet iste officia possimus reprehenderit, tempore.',
                 timestamp: '2025-07-12'
             },
         ]
