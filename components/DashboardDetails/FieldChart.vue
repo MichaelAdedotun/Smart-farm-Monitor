@@ -11,14 +11,14 @@ import type { ChartData, ChartOptions } from 'chart.js'
 
 ChartJS.register(Filler, Title, Tooltip, Legend, LineElement, PointElement, CategoryScale, LinearScale)
 
-const rawNDVI = await useNDVI()
+const {ndviChart} = useNDVI()
 
 const chartData = computed<ChartData<'line'>>(() => ({
-  labels: rawNDVI.ndviChart.value.map((d) => d.label),
+  labels: ndviChart.value.map((d) => d.label),
   datasets: [
     {
       label: 'NDVI',
-      data: rawNDVI.ndviChart.value.map((d) => d.value),
+      data: ndviChart.value.map((d) => d.value),
       borderColor: '#22c55e',
       backgroundColor: 'rgba(34, 197, 94, 0.1)',
       fill: true,
