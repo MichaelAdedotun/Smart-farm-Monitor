@@ -1,8 +1,8 @@
 <script setup lang="ts">
 
-import {useWeather} from "~/composables/useWeather";
+import { useWeather } from "~/composables/useWeather";
 
-const { weather } = await useWeather()
+const { weather, isLoading, error } =  useWeather()
 </script>
 
 <template>
@@ -11,7 +11,11 @@ const { weather } = await useWeather()
       <span>🌤️</span>
       <span>Current Weather Conditions</span>
     </h3>
-    <div v-if="weather" class="space-y-1 text-sm text-gray-700">
+
+    <div v-if="isLoading" class="text-gray-400 text-sm">Loading weather data...</div>
+    <div v-else-if="error" class="text-red-500 text-sm">{{ error }}</div>
+
+    <div v-else-if="weather" class="space-y-1 text-sm text-gray-700">
       <div class="flex items-center gap-2">
         <span class="text-lg">🌡️</span>
         <p>Temperature: <strong>{{ weather.temperature }}°C</strong></p>
@@ -33,7 +37,6 @@ const { weather } = await useWeather()
         <p>UV Index: <strong>{{ weather.uv_index }}</strong></p>
       </div>
     </div>
-    <div v-else class="text-gray-400 text-sm">Loading weather data...</div>
   </div>
 </template>
 

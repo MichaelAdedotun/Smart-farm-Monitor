@@ -1,73 +1,47 @@
+import { ref, watchEffect } from 'vue'
+import { useFilterStore } from '~/composables/useFilterStore'
+import { locationMap } from '~/constants/locationMap'
+
 interface AlertItem {
     title: string
     message: string
     timestamp: string
 }
 
-export const useAlerts = async () => {
+export const useAlerts = () => {
     const alerts = ref<AlertItem[]>([])
+    const filter = useFilterStore()
 
-    try {
-        alerts.value = [
-            {
-                title: 'NDVI Warning',
-                message: 'NDVI dropped below 0.5 in Field A. Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
-                         'Cupiditate eveniet iste officia possimus reprehenderit, tempore.',
-                timestamp: '2025-07-13'
-            },
-            {
-                title: 'Soil Alert',
-                message: 'Soil moisture critical in Field B',
-                timestamp: '2025-07-12'
-            },
-            {
-                title: 'Soil Alert',
-                message: 'Soil moisture critical in Field B' + 'NDVI dropped below 0.5 in Field A. Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
-                            'Cupiditate eveniet iste officia possimus reprehenderit, tempore.',
-                timestamp: '2025-07-12'
-            },
-            {
-                title: 'Sensor Error',
-                message: 'Sensor #12 not responding' + 'NDVI dropped below 0.5 in Field A. Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
-                            'Cupiditate eveniet iste officia possimus reprehenderit, tempore.',
-                timestamp: '2025-07-11'
-            },
-            {
-                title: 'Sensor Error',
-                message: 'Sensor #12 not responding' + 'NDVI dropped below 0.5 in Field A. Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
-                            'Cupiditate eveniet iste officia possimus reprehenderit, tempore.',
-                timestamp: '2025-07-11'
-            },
-            {
-                title: 'Sensor Error',
-                message: 'Sensor #12 not responding'+ 'NDVI dropped below 0.5 in Field A. Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
-                            'Cupiditate eveniet iste officia possimus reprehenderit, tempore.',
-                timestamp: '2025-07-11'
-            },
-            {
-                title: 'Sensor Error',
-                message: 'Sensor #12 not responding'+ 'NDVI dropped below 0.5 in Field A. Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
-                            'Cupiditate eveniet iste officia possimus reprehenderit, tempore.',
-                timestamp: '2025-07-11'
-            },
-            {
-                title: 'Sensor Error',
-                message: 'Sensor #12 not responding' + 'NDVI dropped below 0.5 in Field A. Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
-                            'Cupiditate eveniet iste officia possimus reprehenderit, tempore.',
-                timestamp: '2025-07-11'
-            },
-            {
-                title: 'Soil Alert',
-                message: 'Soil moisture critical in Field B' + 'NDVI dropped below 0.5 in Field A. Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
-                            'Cupiditate eveniet iste officia possimus reprehenderit, tempore.',
-                timestamp: '2025-07-12'
-            },
-        ]
+    const fetchAlerts = async () => {
+        const location = filter.location
+        if (!locationMap[location]) return
+
+        try {
+            alerts.value = [
+                {
+                    title: 'NDVI Warning',
+                    message: `NDVI dropped below 0.5 in ${location}.`,
+                    timestamp: '2025-07-13'
+                },
+                {
+                    title: 'Soil Alert',
+                    message: `Soil moisture critical in ${location}`,
+                    timestamp: '2025-07-12'
+                },
+                {
+                    title: 'Sensor Error',
+                    message: `Sensor #12 not responding in ${location}`,
+                    timestamp: '2025-07-11'
+                }
+            ]
+        } catch (error) {
+            console.error('Failed to fetch alerts:', error)
+        }
     }
-    catch (error) {
-        console.error('Failed to fetch alerts:', error)
-    }
+
+    watchEffect(() => {
+        if (filter.location) fetchAlerts()
+    })
 
     return { alerts }
 }
-
