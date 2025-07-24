@@ -24,11 +24,13 @@ const links = [
         Smart<span class="text-amber-600">Farm</span>
       </h1>
 
+<!--      mobile nav toggle button-->
       <button @click="toggleMenu" class="md:hidden text-gray-700 text-2xl">
         <span v-if="!isOpen">☰</span>
         <span v-else>✕</span>
       </button>
 
+<!--      desktop nav section-->
       <nav class="hidden md:flex items-center gap-6">
         <NuxtLink
             v-for="link in links"
@@ -45,7 +47,7 @@ const links = [
 
       <div class="hidden md:block">
         <NuxtLink
-            to="/admin/dashboard"
+            to="/auth/login"
             class="text-sm text-white px-4 py-2 rounded bg-gradient-to-r from-green-600 to-amber-500 hover:from-green-700 hover:to-amber-600"
         >
           Login
@@ -53,6 +55,7 @@ const links = [
       </div>
     </div>
 
+<!--    Mobile nav section-->
     <div
         v-if="isOpen"
         class="md:hidden absolute right-0 w-1/2 px-6 pb-4 pt-2 flex flex-col text-end
@@ -72,7 +75,7 @@ const links = [
       </NuxtLink>
       <div class="mt-3">
         <NuxtLink
-            to="/admin/dashboard"
+            to="/auth/login"
             class="w-fit text-sm text-white px-4 py-2 rounded bg-gradient-to-r from-green-600 to-amber-500 hover:from-green-700 hover:to-amber-600"
         >
           Login

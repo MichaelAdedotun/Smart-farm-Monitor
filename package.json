@@ -12,8 +12,11 @@
   "dependencies": {
     "@pinia/nuxt": "^0.11.1",
     "@tailwindcss/vite": "^4.1.11",
+    "@vee-validate/zod": "^4.15.1",
     "axios": "^1.10.0",
+    "bcryptjs": "^3.0.2",
     "chart.js": "^4.5.0",
+    "jsonwebtoken": "^9.0.2",
     "leaflet": "^1.9.4",
     "nuxt": "^3.17.7",
     "pinia": "^3.0.3",
