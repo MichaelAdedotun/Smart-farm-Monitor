@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({ layout: 'public' })
 
-import { useForm } from 'vee-validate'
+import { useForm, useField } from 'vee-validate'
 import { z } from 'zod'
 import { toTypedSchema } from '@vee-validate/zod'
 
@@ -19,17 +19,32 @@ const registerSchema = z
 
 type RegisterForm = z.infer<typeof registerSchema>
 
-const { handleSubmit, errors, values } = useForm<RegisterForm>({
+const { handleSubmit, errors, isSubmitting, submitCount } = useForm<RegisterForm>({
   validationSchema: toTypedSchema(registerSchema),
 })
 
-const { name, email, password, confirmPassword } = values
 
-const onSubmit = async (formData: RegisterForm) => {
-  const { data, error } = await useFetch('/api/auth/register', { method: 'POST', body: formData })
-  if (error.value) return alert(error.value.data.message || 'Register failed')
-  navigateTo('/dashboard')
-}
+const { value: name } = useField('name')
+const { value: email } = useField('email')
+const { value: password } = useField('password')
+const { value: confirmPassword } = useField('confirmPassword')
+
+
+const submitForm = handleSubmit(async (formData) => {
+  try {
+    const { data, error } = await useFetch('api/auth/register', {
+      method: 'POST',
+      body: formData,
+    })
+
+    if (error.value) {
+      alert(error.value.data.message || 'Register failed')
+      return
+    }
+
+    navigateTo('/admin/dashboard')
+  } finally {}
+})
 
 </script>
 
@@ -39,28 +54,67 @@ const onSubmit = async (formData: RegisterForm) => {
     <div class="flex items-center justify-center order-2 md:order-1">
       <div class="w-full p-8 md:px-12 lg:px-17">
         <h2 class="text-3xl text-green-600 font-bold mb-6">Register</h2>
-        <form @submit="handleSubmit(onSubmit)" class="space-y-4">
+        <form @submit.prevent="submitForm" class="space-y-4">
           <div>
-            <input v-model="name" type="text" placeholder="Full Name" class="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-green-600" required />
+            <input
+                v-model="name"
+                type="text"
+                placeholder="Full Name"
+                class="block w-full p-2 rounded-md border-gray-400 border outline-none"
+                :class="[
+                        errors.name ? 'border-red-600 ' : name ? 'border-green-600' : 'border-gray-400'
+                ]"
+            />
             <span class="text-sm text-red-500">{{ errors.name }}</span>
           </div>
 
           <div>
-            <input v-model="email" type="email" placeholder="Email" class="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-green-600" required />
+            <input
+                v-model="email"
+                type="email"
+                placeholder="Email"
+                class="block w-full p-2 rounded-md border-gray-400 border outline-none"
+                :class="[
+                        errors.email ? 'border-red-600 ' : email ? 'border-green-600' : 'border-gray-400'
+                ]"
+            />
             <span class="text-sm text-red-500">{{ errors.email }}</span>
           </div>
 
           <div>
-            <input v-model="password" type="password" placeholder="Password" class="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600" required />
+            <input
+                v-model="password"
+                type="password"
+                placeholder="Password"
+                class="block w-full p-2 rounded-md border-gray-400 border outline-none"
+                :class="[
+                        errors.password ? 'border-red-600 ' : password ? 'border-green-600' : 'border-gray-400'
+                ]"
+            />
             <span class="text-sm text-red-500">{{ errors.password }}</span>
           </div>
 
           <div>
-            <input v-model="confirmPassword" type="password" placeholder="Confirm Password" class="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600" required />
+            <input
+                v-model="confirmPassword"
+                type="password"
+                placeholder="Confirm Password"
+                class="block w-full p-2 rounded-md border-gray-400 border outline-none"
+                :class="[
+                        errors.confirmPassword ? 'border-red-600 ' : confirmPassword ? 'border-green-600' : 'border-gray-400'
+                ]"
+            />
             <span class="text-sm text-red-500">{{ errors.confirmPassword }}</span>
           </div>
 
-          <button type="submit" class="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition">Register</button>
+          <button
+              type="submit"
+              class="w-full bg-green-600 text-white py-2 px-4 rounded-md cursor-pointer hover:bg-green-700 transition disabled:opacity-50"
+              :disabled="isSubmitting"
+          >
+            <span v-if="isSubmitting">Registering...</span>
+            <span v-else>Register</span>
+          </button>
         </form>
         <p class="mt-4 text-gray-500 text-sm text-center">Already have an account? <NuxtLink to="/auth/login" class="text-green-600">Login</NuxtLink></p>
       </div>
