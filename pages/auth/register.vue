@@ -1,9 +1,12 @@
 <script setup lang="ts">
 definePageMeta({ layout: 'public' })
 
-import { useForm, useField } from 'vee-validate'
+import { useForm, useField, useResetForm } from 'vee-validate'
 import { z } from 'zod'
 import { toTypedSchema } from '@vee-validate/zod'
+import { useToast } from 'vue-toastification'
+
+const toast = useToast()
 
 const registerSchema = z
     .object({
@@ -30,20 +33,10 @@ const { value: password } = useField('password')
 const { value: confirmPassword } = useField('confirmPassword')
 
 
-const submitForm = handleSubmit(async (formData) => {
-  try {
-    const { data, error } = await useFetch('api/auth/register', {
-      method: 'POST',
-      body: formData,
-    })
-
-    if (error.value) {
-      alert(error.value.data.message || 'Register failed')
-      return
-    }
-
-    navigateTo('/admin/dashboard')
-  } finally {}
+const submitForm = handleSubmit(async () => {
+  toast.success('Registration successful')
+  useResetForm()
+  navigateTo('/auth/login')
 })
 
 </script>

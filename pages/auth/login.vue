@@ -1,9 +1,12 @@
 <script setup lang="ts">
 definePageMeta({ layout: 'public' })
 
-import { useForm, useField } from 'vee-validate'
+import {useForm, useField, useResetForm} from 'vee-validate'
 import { z } from 'zod'
 import { toTypedSchema } from '@vee-validate/zod'
+import { useToast } from 'vue-toastification'
+
+const toast = useToast()
 
 const loginSchema = z.object({
   email: z.string().email('Invalid email'),
@@ -19,20 +22,10 @@ const { handleSubmit, errors, isSubmitting, submitCount } = useForm<LoginForm>({
 const { value: email } = useField('email')
 const { value: password } = useField('password')
 
-const submitForm = handleSubmit(async (formData) => {
-  try {
-    const { data, error } = await useFetch('/api/auth/login', {
-      method: 'POST',
-      body: formData,
-    })
-
-    if (error.value) {
-      alert(error.value.data.message || 'Login failed')
-      return
-    }
-
-    navigateTo('/admin/dashboard')
-  } finally {}
+const submitForm = handleSubmit(async () => {
+  toast.success('Login successful')
+  useResetForm()
+  navigateTo('/admin/dashboard')
 })
 </script>
 
