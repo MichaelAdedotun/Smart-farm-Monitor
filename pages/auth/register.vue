@@ -42,10 +42,14 @@ const submitForm = handleSubmit(async () => {
 </script>
 
 <template>
-  <div class="min-h-screen grid grid-cols-1 md:grid-cols-2">
+  <div class="min-h-screen flex flex-col justify-start items-start md:flex-row-reverse md:justify-center md:items-center">
+
+    <!-- right: Image section -->
+    <div class="w-full md:w-1/3 lg:w-1/2 h-96 md:h-screen bg-cover bg-center rounded-ee-4xl md:rounded-none" style="background-image: url('/images/hero-smart-farm.jpg')"></div>
+
     <!-- left: Form section -->
-    <div class="flex items-center justify-center order-2 md:order-1">
-      <div class="w-full p-8 md:px-12 lg:px-17">
+    <div class="flex items-center justify-center w-full md:w-2/3 lg:w-1/2">
+      <div class="w-full px-8 py-10 md:px-17">
         <h2 class="text-3xl text-green-600 font-bold mb-6">Register</h2>
         <form @submit.prevent="submitForm" class="space-y-4">
           <div>
@@ -112,10 +116,7 @@ const submitForm = handleSubmit(async () => {
         <p class="mt-4 text-gray-500 text-sm text-center">Already have an account? <NuxtLink to="/auth/login" class="text-green-600">Login</NuxtLink></p>
       </div>
     </div>
-
-    <!-- right: Image section -->
-    <div class="h-96 md:h-screen bg-cover bg-center order-1 md:order-2" style="background-image: url('/images/hero-smart-farm.jpg')"></div>
-  </div>
+ </div>
 </template>
 
 <style scoped>

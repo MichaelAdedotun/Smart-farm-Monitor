@@ -4,8 +4,8 @@ definePageMeta({ layout: 'public' })
 </script>
 
 <template>
-  <section class="relative h-screen bg-cover bg-center"
-           style="background-image: url('/images/hero-smart-farm.jpg')">
+  <section class="relative h-screen">
+    <img src="/images/hero-smart-farm.jpg" alt="hero background image" class="absolute inset-0 w-full h-full object-cover" />
     <div class="absolute inset-0 bg-black opacity-60"></div>
     <div class="relative z-10 flex flex-col items-center justify-center text-center h-full px-6 md:px-20">
       <h1 class="text-4xl md:text-6xl text-white/90 font-bold mb-4">
